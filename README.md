@@ -4,5 +4,10 @@
 ### Creación entorno virtual
 * cmd : `python -m venv ven_reconocimiento_facial` 
 
+#### Activación entorno vritual 
+ 1.
+ 2.
+  fin 
+
 ### Bibliotecas
 * PyMysql - comando: `pip install pymysql`
