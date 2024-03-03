@@ -19,3 +19,6 @@ la terminal `cmd` y ejecute el comando `pip install -r requerimientos.txt`
 
 ### Bibliotecas
 * PyMysql - comando: `pip install pymysql`
+
+#### Generar archivo de bibliotecas y dependencias
+- comando: `python -m pip freeze > requerimientos.txt`
