@@ -11,5 +11,11 @@
 
 HBSFHSDCKJN
 
+### Reestauración del proyecto mediante bibliotecas
+
+- Antes de instalar las dependencias cree y active el entorno virtual como `ven_reconocimiento_facial`.
+Para instalar la lista de dependencias en cualquier otra instalación de Python dirijase a
+la terminal `cmd` y ejecute el comando `pip install -r requerimientos.txt`
+
 ### Bibliotecas
 * PyMysql - comando: `pip install pymysql`
