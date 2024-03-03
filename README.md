@@ -5,10 +5,11 @@
 * cmd : `python -m venv ven_reconocimiento_facial` 
 
 #### Activación entorno vritual 
- 1.
- 2.
+ 1. nos dirigimos a la carpeta : ven_reconocimiento_facial 
+ 2. abrimos la carpeta Scripts y activate
   fin 
 
+<<<<<<< Updated upstream
 HBSFHSDCKJN
 
 ### Reestauración del proyecto mediante bibliotecas
@@ -17,6 +18,8 @@ HBSFHSDCKJN
 Para instalar la lista de dependencias en cualquier otra instalación de Python dirijase a
 la terminal `cmd` y ejecute el comando `pip install -r requerimientos.txt`
 
+=======
+>>>>>>> Stashed changes
 ### Bibliotecas
 * PyMysql - comando: `pip install pymysql`
 
