@@ -1,5 +1,6 @@
 import pymysql
 from decouple import config 
+from src.classes_project.manejador_excepciones import Excepciones
 
 class Conexion:
     def __init__(self):
@@ -15,6 +16,7 @@ class Conexion:
 
         except pymysql.err.OperationalError as ex:
             print('A ocurrido la siguiente excepción', ex)
-            aux = str(ex).split(',')
+            str(ex).split(',')
+
         else:
             print('¡Conexión establecida correctamente!')

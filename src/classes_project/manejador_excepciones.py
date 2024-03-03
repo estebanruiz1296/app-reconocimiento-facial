@@ -4,5 +4,5 @@ class Excepciones:
         self.codigo_error = ""
         self.mensaje = ""
 
-    def generarExcepcion(self):
-        pass
+    def generarExcepcion(self, mysql=None, codigo:str=''):
+        return codigo
