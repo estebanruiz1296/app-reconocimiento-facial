@@ -5,9 +5,12 @@
 * cmd : `python -m venv ven_reconocimiento_facial` 
 
 #### Activación entorno vritual 
- 1. nos dirigimos a la carpeta : ven_reconocimiento_facial 
- 2. abrimos la carpeta Scripts y activate
-  fin 
+ 1. primero nos dirigimos a la carpeta ven_reconocimiento_facial asi: cd ven_reconocimiento_facia.
+
+ 2. luego a la carpeta Scripts y luego a activate asi: Scripts\activate.
+
+  fin.
+
 
 ### Reestauración del proyecto mediante bibliotecas
 
