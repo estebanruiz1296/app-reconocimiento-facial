@@ -15,6 +15,6 @@ class Conexion:
 
         except pymysql.err.OperationalError as ex:
             print('A ocurrido la siguiente excepción', ex)
-            print(str(ex).split(','))
+            aux = str(ex).split(',')
         else:
             print('¡Conexión establecida correctamente!')
