@@ -1,4 +1,5 @@
 import re
+
 class Excepciones:
     def __init__(self):
         self.errores:dict = {

@@ -63,7 +63,7 @@ class Consultas:
         return None
 
 
-    def consultarPorID():
+    def consultarPorID(self, tabla, id):
         pass
 
     def modificar(self):
