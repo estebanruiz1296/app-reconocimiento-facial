@@ -1,6 +1,14 @@
-from src.classes_project.conexion import Conexion
+from src.classes_project import conexion
+from src.classes_project.consultas import Consultas
 
 if __name__ == '__main__':
     print('iniciando...')
-    con = Conexion()
+    consulta = Consultas().consultar('usuario')
+    print(consulta)
+    
 
+
+
+    
+        
+        

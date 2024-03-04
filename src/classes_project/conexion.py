@@ -4,19 +4,23 @@ from src.classes_project.manejador_excepciones import Excepciones
 
 class Conexion:
     def __init__(self):
+        self.conexion = None
+        self.cursor = None
         try:
-            self.connection = pymysql.connect(
+            self.conexion = pymysql.connect(
                 host=config('MYSQL_HOST'),
                 user=config('MYSQL_USER'),
                 password=config('MYSQL_PASSWORD'),
                 db=config('MYSQL_DB'),
                 cursorclass=pymysql.cursors.DictCursor
             )
-            self.cursor = self.connection.cursor()
+            self.cursor = self.conexion.cursor()
 
         except pymysql.err.OperationalError as ex:
-            print('A ocurrido la siguiente excepción', ex)
-            str(ex).split(',')
-
+            print('A ocurrido la siguiente excepción en Conexion: ', Excepciones().mostrarError(ex))
         else:
             print('¡Conexión establecida correctamente!')
+
+            
+            
+        
