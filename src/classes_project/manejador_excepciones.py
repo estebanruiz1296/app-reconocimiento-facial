@@ -4,7 +4,7 @@ class Excepciones:
         self.errores:dict = {
             "2003" : "No se puede establecer una conexión con el servidor de bases de datos",
             "1049" : "La base de datos a la cual se quiere conectar no existe",
-            "1146" : "La tabla consultada no existe"
+            "1146" : "La tabla consultada no existe",
         } 
 
     def mostrarError(self, cod):
@@ -16,4 +16,4 @@ class Excepciones:
             if c == regex_cod:
                 return int(regex_cod), self.errores[regex_cod]
             
-        return f"Código desconocido: {regex_cod}"
+        return f"Código desconocido: {regex_cod}", cod
