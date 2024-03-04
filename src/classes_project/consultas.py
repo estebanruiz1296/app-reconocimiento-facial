@@ -5,11 +5,29 @@ class Consultas:
     def __init__(self) -> None:
         pass
 
-    def crearTablas(self):
-        pass
+    def insertar(self, tabla, datos_usuario:dict):
+        con = Conexion()
+        try:
+            sql = f'''
+                INSERT INTO {tabla} (idusuario, nombre_usuario, email, password, ruta_imagen, fecha_registro) 
+                    VALUES 
+                (
+                NULL,
+                '{datos_usuario['nombre_usuario']}', 
+                '{datos_usuario['email']}',
+                '{datos_usuario['password']}', 
+                '{datos_usuario['ruta_imagen']}', 
+                '{datos_usuario['fecha_registro']}')
+            '''
+            cursor = con.conexion.cursor()
+            cursor.execute(sql)
+            print('Datos registrados correctamente!')
+            con.conexion.commit()
 
-    def insertar(self):
-        pass
+        except Exception as ex:
+            print(ex)
+        finally:
+            con.conexion.close()
 
     def consultar(self, tabla): 
         con = Conexion()

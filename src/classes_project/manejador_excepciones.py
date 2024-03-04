@@ -6,6 +6,7 @@ class Excepciones:
             "2003" : "No se puede establecer una conexión con el servidor de bases de datos",
             "1049" : "La base de datos a la cual se quiere conectar no existe",
             "1146" : "La tabla consultada no existe",
+            "1136" : "El recuento de columnas no coincide con el recuento de valores de la fila 1"
         } 
 
     def mostrarError(self, cod):
