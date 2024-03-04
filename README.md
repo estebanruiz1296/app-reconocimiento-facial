@@ -23,3 +23,6 @@ la terminal `cmd` y ejecute el comando `pip install -r requerimientos.txt`
 
 #### Generar archivo de bibliotecas y dependencias
 - comando: `python -m pip freeze > requerimientos.txt`
+
+### Apuntes 
+1- (1049, "Unknown database 'reconocimiento_facial'")
