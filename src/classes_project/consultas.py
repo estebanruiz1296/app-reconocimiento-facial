@@ -11,8 +11,7 @@ class Consultas:
             sql = f'''
                 INSERT INTO {tabla} (idusuario, identificacion, nombre_usuario, email, password, password_hash, ruta_imagen, fecha_registro) 
                     VALUES 
-                (
-                NULL,
+                (NULL,
                 '{datos_usuario['identificacion']}',
                 '{datos_usuario['nombre_usuario']}', 
                 '{datos_usuario['email']}',
@@ -76,10 +75,10 @@ class Consultas:
             
             except Exception as ex:
                 print(
-                f'''
-                    Error: requiere de su interes en def consultar para la tabla {tabla}. 
-                    {Excepciones().mostrarError(ex)}'''
-                )
+                f"""
+                Error: requiere de su interes en def consultar para la tabla {tabla}. 
+                {Excepciones().mostrarError(ex)}
+                """)
                 return False
             
             finally:
@@ -89,8 +88,26 @@ class Consultas:
         return None
 
 
-    def consultarPorID(self, tabla, id):
-        pass
+    def consultarPorID(self, tabla, identificacion):
+        con = Conexion()
+        result = None
+        try:
+            sql = f"SELECT * FROM {tabla} WHERE identificacion={identificacion}"
+            cursor = con.conexion.cursor()
+            cursor.execute(sql)
+            result = cursor.fetchone()
+
+        except BaseException as ex:
+            print(
+            f"""
+            Error: requiere de su interes en def consultarPorID para la tabla {tabla}.
+            {Excepciones().mostrarError(ex)}
+            """)
+        finally:
+            con.conexion.close()
+
+        return result
+    
 
     def modificar(self):
         pass

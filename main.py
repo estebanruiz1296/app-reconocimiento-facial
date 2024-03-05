@@ -11,24 +11,29 @@ if __name__ == '__main__':
     #para encriptar strings
 
     pass_encode = "@reconocimientofacial".encode()
-    sal = bcrypt.gensalt()
+    sal = bcrypt.gensalt(15)
     pass_hasheada = bcrypt.hashpw(pass_encode, sal)
 
-    print('insertando datos...')
-    datos = {
-        "identificacion" : "1084228683",
-        "nombre_usuario" : "Esteban Ruiz",
-        "email" : "estebanruiz1296@gmail.com",
-        "password" : "@reconocimientofacial",
-        "password_hash" : pass_hasheada.decode(),
-        "ruta_imagen" : "d:/carpeta/predito_1299193.png",
-        "fecha_registro" : str(datetime.now())
-    }
-    consulta.insertar('usuario', datos)
+    # print('insertando datos...')
+    # datos = {
+    #     "identificacion" : "123456789",
+    #     "nombre_usuario" : "Stiven Morales Maguaya",
+    #     "email" : "morales134@gmail.com",
+    #     "password" : "134morales",
+    #     "password_hash" : pass_hasheada.decode(),
+    #     "ruta_imagen" : "d:/carpeta/stiven_123456789.png",
+    #     "fecha_registro" : str(datetime.now())
+    # }
+    # consulta.insertar('usuario', datos)
 
-    print('consulta')
-    results = consulta.consultar('usuario')
-    print(results)
+    # print('consulta')
+    # results = consulta.consultar('usuario')
+    # print(results)
+
+    usuario_por_id = consulta.consultarPorID('usuario', '1084228683')
+    print(usuario_por_id)
+
+    print('programa finalizado.')
     
 
 
