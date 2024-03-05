@@ -9,13 +9,15 @@ class Consultas:
         con = Conexion()
         try:
             sql = f'''
-                INSERT INTO {tabla} (idusuario, nombre_usuario, email, password, ruta_imagen, fecha_registro) 
+                INSERT INTO {tabla} (idusuario, identificacion, nombre_usuario, email, password, password_hash, ruta_imagen, fecha_registro) 
                     VALUES 
                 (
                 NULL,
+                '{datos_usuario['identificacion']}',
                 '{datos_usuario['nombre_usuario']}', 
                 '{datos_usuario['email']}',
                 '{datos_usuario['password']}', 
+                '{datos_usuario['password_hash']}',
                 '{datos_usuario['ruta_imagen']}', 
                 '{datos_usuario['fecha_registro']}')
             '''
@@ -25,7 +27,11 @@ class Consultas:
             con.conexion.commit()
 
         except Exception as ex:
-            print(ex)
+            print(
+                f'''
+                    Error: requiere de su interes en def insertar para la tabla {tabla}. 
+                    {Excepciones().mostrarError(ex)}'''
+                )
         finally:
             con.conexion.close()
 
@@ -42,11 +48,13 @@ class Consultas:
                 if not result:
                     print('creando tabla...')
                     sql = f'''
-                        CREATE TABLE `usuario` (
+                        CREATE TABLE `{tabla}` (
                             `idusuario` INT NOT NULL AUTO_INCREMENT,
+                            `identificacion` VARCHAR(12) NOT NULL,
                             `nombre_usuario` VARCHAR(50) NOT NULL,
                             `email` VARCHAR(50) NOT NULL,
                             `password` VARCHAR(20) NOT NULL,
+                            `password_hash` VARCHAR(100) NOT NULL,
                             `ruta_imagen` LONGTEXT NOT NULL,
                             `fecha_registro` TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP,
                             PRIMARY KEY (`idusuario`)
