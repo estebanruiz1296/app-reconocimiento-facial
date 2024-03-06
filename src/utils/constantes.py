@@ -1,0 +1,1 @@
+RUTA_BASE_SETUP = "src/images/setup"

@@ -34,7 +34,7 @@ class Consultas:
         finally:
             con.conexion.close()
 
-    def consultar(self, tabla): 
+    def consultarTabla(self, tabla): 
         con = Conexion()
         sql = ""
         if con.conexion:
@@ -108,6 +108,22 @@ class Consultas:
 
         return result
     
+    def consultarDatosUsuario(self, sql:str):
+        con = Conexion()
+        try:
+            cursor = con.conexion.cursor()
+            cursor.execute(sql)
+            result = cursor.fetchone()
+            return result
+        
+        except Exception as ex:
+            print(f"Error: requiere de su interes en def consultarDatosUsuario. {Excepciones().mostrarError(ex)}")
+        
+        finally:
+            con.conexion.close()
+        
+        return None
+        
 
     def modificar(self):
         pass

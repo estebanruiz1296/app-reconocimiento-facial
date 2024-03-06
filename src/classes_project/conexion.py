@@ -1,5 +1,5 @@
 import pymysql
-from decouple import config 
+from decouple import config
 from src.classes_project.manejador_excepciones import Excepciones
 
 class Conexion:
