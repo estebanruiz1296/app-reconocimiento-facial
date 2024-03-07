@@ -28,6 +28,7 @@ la terminal `cmd` y ejecute el comando `pip install -r requerimientos.txt`
 * bcrypt 4.1.2 - comando: `pip install bcrypt`
 * face-recognition 1.3.0 - comando: `pip install face-recognition`
 * imutils 0.5.4 - comando: `pip install imutils`
+* customtkinter 5.2.2 - comando: `pip install customtkinter`
 
 ### Generar archivo de bibliotecas y dependencias
 - comando: `python -m pip freeze > requerimientos.txt`
