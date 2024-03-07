@@ -29,11 +29,15 @@ la terminal `cmd` y ejecute el comando `pip install -r requerimientos.txt`
 * face-recognition 1.3.0 - comando: `pip install face-recognition`
 * imutils 0.5.4 - comando: `pip install imutils`
 * customtkinter 5.2.2 - comando: `pip install customtkinter`
+* pillow 10.2.0 - comando: `pip install pillow`
 
 ### Generar archivo de bibliotecas y dependencias
 - comando: `python -m pip freeze > requerimientos.txt`
 
 ### Recursos
+- Para tener en cuenta, algunas bibliotecas como face_recognition depende de dblin y muchas veces hay que actualizar 
+pip y las setuptools mediante el siguiente comando: `pip install --upgrade pip setuptools`, adicional a ello instalar dlib que depende de CMake [CMake](https://cmake.org/download/), el cual debe ser descargado y configurado en las variables de entorno.
+
 - para usar con face-recognition: [Dlib compiled wheels for Python 3.7, 3.8, 3.9](https://github.com/sachadee/Dlib)
 
 ### Apuntes 

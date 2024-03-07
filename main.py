@@ -1,14 +1,10 @@
 #bibliotecas
-from customtkinter import *
-from src.vistas.login_vista import Login
+from src.vistas.register_vista import Registrarse
 
 if __name__ == '__main__':
     print('iniciando...')
-    
-    app = Login()
-    app.mainloop()
-    
-
+    registrarse = Registrarse()
+    registrarse.mainloop()
     print('Finalizo.')
 
     
