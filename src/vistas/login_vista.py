@@ -25,7 +25,7 @@ class Login(ctk.CTk):
         alto_window = self.winfo_screenheight()
         print('ancho window', ancho_window)
 
-        # Calculos para centrar la interfaz en pantalla
+         # Calculos para centrar la interfaz en pantalla
         x_local = int((ancho_window / 2) - (self.x / 2))
         y_local = int((alto_window /  2) - (self.y / 2))
 
