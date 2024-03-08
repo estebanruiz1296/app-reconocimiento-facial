@@ -8,6 +8,8 @@ from src.classes_project.consultas import Consultas
 from src.classes_project.cifrar import CifrarPassword
 import cv2
 import imutils
+from src.vistas.register_vista import Registrarse
+from src.vistas.panel_usuario import Sistema
 
 class Login(ctk.CTk):
     def __init__(self) -> None:
@@ -37,8 +39,7 @@ class Login(ctk.CTk):
         # creamos login
         # imagen de fondo
         self.image_fondo_login = CTkImage(
-            Image.open(f"{RUTA_BASE_SETUP}/fondo_login.png")
-        )
+            Image.open(f"{RUTA_BASE_SETUP}/fondo_login.png"), size=(self.x, self.y))
         self.lblFondoLogin = CTkLabel(self, image=self.image_fondo_login)
         self.lblFondoLogin.pack(fill=tk.BOTH, expand=True)
 
@@ -81,7 +82,7 @@ class Login(ctk.CTk):
         self.btnRegistrarse = CTkButton(
             self.frameLogin, width=90, height=30,text='Registrarse', corner_radius=8,
             compound='left', font=("Century Ghotic", 12, 'bold'), fg_color="#3c912d", hover_color='#94e386',
-            text_color='#1f211f'
+            text_color='#1f211f', command=self.ir_a_ventana_registro
         )
         self.btnRegistrarse.place(x=50, y=290)
 
@@ -116,12 +117,20 @@ class Login(ctk.CTk):
                 # comprobamos si el correo y la contraseña son validos
                 if resultado_consulta['email'] == email and CifrarPassword.validar_password(password, resultado_consulta['password_hash']):
                     print('ingresando...')
+                    self.withdraw()
+                    sistema = Sistema(self)
+                    sistema.deiconify()
                 else:
                     messagebox.showwarning('Validación credenciales', "¡Usuario o contraseña incorrectos!")
 
 
     def ingreso_biometrico(self):
         print('ingreso biometrico')
+
+    def ir_a_ventana_registro(self):
+        # self.withdraw()  # Ocultar la ventana principal
+        ventana_registrarse = Registrarse(self)
+        ventana_registrarse.deiconify()  # Mostrar la ventana secundaria
 
 
         

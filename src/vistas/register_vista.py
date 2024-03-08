@@ -1,16 +1,19 @@
 import tkinter as tk
-from tkinter import messagebox
+from tkinter import messagebox, ttk
 import customtkinter as ctk
 from customtkinter import *
 from src.classes_project.consultas import Consultas
 from src.classes_project.cifrar import CifrarPassword
 import datetime
 
-class Registrarse(ctk.CTk):
-    def __init__(self):
-        super().__init__()
+class Registrarse(ctk.CTkToplevel):
+    def __init__(self, parent):
+        super().__init__(parent)
         self.apariencia = set_appearance_mode('dark')
         self.temas = set_default_color_theme('blue')
+        # Definir el protocolo para el cierre de la ventana
+        self.protocol("WM_DELETE_WINDOW", self.on_cerrar_ventana)
+
         self.load_window_registrarse()
         self.registrase_interfaz()
 
@@ -19,6 +22,7 @@ class Registrarse(ctk.CTk):
         return self.geometry("800x500")
     
     def registrase_interfaz(self):
+
         #frame para ubicar los widgets, entry y buttons
         self.frameRegistrarse = CTkFrame(self, width=700, height=400, corner_radius=25)
         self.frameRegistrarse.place(relx=0.5, rely=0.5, anchor=tk.CENTER)
@@ -92,26 +96,26 @@ class Registrarse(ctk.CTk):
 
     def registrarUsuario(self):
         #obtenemos el valor de los campos de texto y los alacenamos en varibles
-        cc, nom = self.txtIdentificacion.get(), self.txtNombre.get()
+        identificacion, nom = self.txtIdentificacion.get(), self.txtNombre.get()
         email, pword = self.txtEmail.get(), self.txtPassword.get()
 
-        if len(cc)==0 or len(nom)==0 or len(email)==0 or len(pword)==0:
+        if len(identificacion)==0 or len(nom)==0 or len(email)==0 or len(pword)==0:
             messagebox.showwarning("Verificación campos de texto", "Debes llenar todos los campos de texto")
         else:
             consulta = Consultas()
-            sql = f"SELECT COUNT(*) as contar_usuario FROM usuario WHERE identificacion='{cc}' OR email='{email}';"
+            sql = f"SELECT COUNT(*) as contar_usuario FROM usuario WHERE identificacion='{identificacion}' OR email='{email}';"
             result_consulta = consulta.consultarDatosUsuario(sql)
             #validamos que el usuario no haya sido registrado aún
             if result_consulta['contar_usuario'] == 0:
                 print('creando usuario...')
                 consulta.insertar('usuario', 
                 {
-                'identificacion' : cc,
+                'identificacion' : identificacion,
                 'nombre_usuario'  : nom,
                 'email' : email,
                 'password' : pword,
                 'password_hash' : CifrarPassword.cifrar_password(pword).decode(encoding='utf-8'),
-                'ruta_imagen' : f"src/images/faces/{cc}.png",
+                'ruta_imagen' : f"src/images/faces/{identificacion}.png",
                 'fecha_registro' : datetime.datetime.now()
                 })
                 messagebox.showinfo('Exito', '!Usuario registrado satisfactoriamente!') 
@@ -123,6 +127,12 @@ class Registrarse(ctk.CTk):
 
             else:
                 messagebox.showerror('Validación usuario', '¡Usuario existente, cambie el correo o la identificación!')
+    
+    def on_cerrar_ventana(self):
+        # Acciones que deseas realizar antes de cerrar la ventana
+        print("La ventana registrarse se está cerrando")
+        self.destroy()
+        
 
                          
 
