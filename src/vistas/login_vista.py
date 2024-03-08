@@ -2,10 +2,14 @@ import tkinter as tk
 from tkinter import messagebox
 import customtkinter as ctk
 from customtkinter import *
-from PIL import Image
+from PIL import Image, ImageTk
 from src.utils.constantes import RUTA_BASE_SETUP
 from src.classes_project.consultas import Consultas
 from src.classes_project.cifrar import CifrarPassword
+import cv2
+import imutils
+from src.vistas.register_vista import Registrarse
+from src.vistas.panel_usuario import Sistema
 
 class Login(ctk.CTk):
     def __init__(self) -> None:
@@ -14,31 +18,30 @@ class Login(ctk.CTk):
         self.apariencia = set_appearance_mode("dark") # parametros: system, dark, light
         self.temas = set_default_color_theme("dark-blue") # temas: blue, dark-blue or green
         self.x, self.y = 600, 440
+        self.width_size, self.height_size = 600, 440
         self.configuracion_ventana_login()
         self.panel_login()
 
     def configuracion_ventana_login(self):
         self.title("Login")
         # self.iconbitmap(f"{DIRECTORIO_BASE_IMAGES}/icono.ico")
-
         ancho_window = self.winfo_screenwidth()
         alto_window = self.winfo_screenheight()
-        print('ancho window', ancho_window)
 
          # Calculos para centrar la interfaz en pantalla
         x_local = int((ancho_window / 2) - (self.x / 2))
         y_local = int((alto_window /  2) - (self.y / 2))
 
         return self.geometry(f"{self.x}x{self.y}+{x_local}+{y_local}")
-
-
+        
 
     def panel_login(self):
         # creamos login
         # imagen de fondo
-        self.image_fondo_login = CTkImage(Image.open(f"{RUTA_BASE_SETUP}/fondo_login.png"), size=(self.x, self.y))
+        self.image_fondo_login = CTkImage(
+            Image.open(f"{RUTA_BASE_SETUP}/fondo_login.png"), size=(self.x, self.y))
         self.lblFondoLogin = CTkLabel(self, image=self.image_fondo_login)
-        self.lblFondoLogin.pack()
+        self.lblFondoLogin.pack(fill=tk.BOTH, expand=True)
 
         #frame central 
         self.frameLogin = CTkFrame(self, width=320, height=360, corner_radius=25)
@@ -79,16 +82,17 @@ class Login(ctk.CTk):
         self.btnRegistrarse = CTkButton(
             self.frameLogin, width=90, height=30,text='Registrarse', corner_radius=8,
             compound='left', font=("Century Ghotic", 12, 'bold'), fg_color="#3c912d", hover_color='#94e386',
-            text_color='#1f211f'
+            text_color='#1f211f', command=self.ir_a_ventana_registro
         )
         self.btnRegistrarse.place(x=50, y=290)
 
         self.btnIngresoBiometrico = CTkButton(
             self.frameLogin, width=90, height=30,text='Ingreso biométrico', corner_radius=8,
             font=("Century Ghotic", 12, 'bold'), fg_color="#3c912d", hover_color='#94e386',
-            text_color='#1f211f'
+            text_color='#1f211f', command=self.ingreso_biometrico
         )
         self.btnIngresoBiometrico.place(x=150, y=290)
+        
 
     def Ingresar(self):
         # instanciamos la clase consulta
@@ -106,15 +110,27 @@ class Login(ctk.CTk):
             resultado_consulta = consulta.consultarDatosUsuario(sql)
             
 
-            # comprobamos si la consulta nos trajo resul
+            # comprobamos si la consulta nos trajo el usuario de la base de datos
             if not resultado_consulta:
                 messagebox.showwarning('Validación credenciales', '¡Usuario incorrecto!')
             else:
+                # comprobamos si el correo y la contraseña son validos
                 if resultado_consulta['email'] == email and CifrarPassword.validar_password(password, resultado_consulta['password_hash']):
                     print('ingresando...')
+                    self.withdraw()
+                    sistema = Sistema(self)
+                    sistema.deiconify()
                 else:
                     messagebox.showwarning('Validación credenciales', "¡Usuario o contraseña incorrectos!")
-        
-            
+
+
+    def ingreso_biometrico(self):
+        print('ingreso biometrico')
+
+    def ir_a_ventana_registro(self):
+        # self.withdraw()  # Ocultar la ventana principal
+        ventana_registrarse = Registrarse(self)
+        ventana_registrarse.deiconify()  # Mostrar la ventana secundaria
+
 
         
