@@ -6,8 +6,6 @@ from PIL import Image, ImageTk
 from src.utils.constantes import RUTA_BASE_SETUP
 from src.classes_project.consultas import Consultas
 from src.classes_project.cifrar import CifrarPassword
-import cv2
-import imutils
 from src.vistas.register_vista import Registrarse
 from src.vistas.panel_usuario import Sistema
 
